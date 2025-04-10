@@ -1,9 +1,4 @@
-from homeassistant.data_entry_flow import section
-from homeassistant.helpers.selector import selector
-import voluptuous as vol
-import homeassistant.helpers.config_validation as cv
 from homeassistant import config_entries
-from homeassistant.core import callback
 from homeassistant.const import (
     CONF_NAME,
     CONF_PASSWORD,
@@ -12,6 +7,12 @@ from homeassistant.const import (
     CONF_ELEVATION,
     CONF_SCAN_INTERVAL,
 )
+from homeassistant.core import callback
+from homeassistant.data_entry_flow import section
+import homeassistant.helpers.config_validation as cv
+from homeassistant.helpers.selector import selector
+import voluptuous as vol
+
 from .const import (
     DOMAIN,
     DEFAULT_NAME,

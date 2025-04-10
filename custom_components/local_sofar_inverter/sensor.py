@@ -1,10 +1,15 @@
-from .const import DOMAIN
+from datetime import timedelta
 import logging
 import requests
 from requests.exceptions import HTTPError
-import voluptuous as vol
-import homeassistant.helpers.config_validation as cv
-from homeassistant.helpers.entity import Entity, async_generate_entity_id
+
+from homeassistant.components.sensor import PLATFORM_SCHEMA, ENTITY_ID_FORMAT
+
+try:
+    from homeassistant.components.sensor import SensorEntity
+except ImportError:
+    from homeassistant.components.sensor import SensorDevice as SensorEntity
+
 from homeassistant.const import (
     CONF_NAME,
     CONF_HOST,
@@ -14,14 +19,13 @@ from homeassistant.const import (
     CONF_SCAN_INTERVAL,
     ATTR_ATTRIBUTION,
 )
-from homeassistant.components.sensor import PLATFORM_SCHEMA, ENTITY_ID_FORMAT
+import homeassistant.helpers.config_validation as cv
+from homeassistant.helpers.entity import Entity, async_generate_entity_id
 from homeassistant.util import Throttle
-from datetime import timedelta
+import voluptuous as vol
 
-try:
-    from homeassistant.components.sensor import SensorEntity
-except ImportError:
-    from homeassistant.components.sensor import SensorDevice as SensorEntity
+from .const import DOMAIN
+
 
 _LOGGER = logging.getLogger(__name__)
 
